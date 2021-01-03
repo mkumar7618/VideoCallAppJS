@@ -16,10 +16,10 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.redirect(`/${uuidV4()}`)
+  res.redirect(`/vc/${uuidV4()}`)
 })
 
-app.get('/:room', (req, res) => {
+app.get('/vc/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
 
@@ -31,7 +31,7 @@ io.on('connection', socket => {
     socket.on('message', (message) => {
       //send message to the same room
       io.to(roomId).emit('createMessage', message)
-  }); 
+    });
 
     socket.on('disconnect', () => {
       socket.to(roomId).broadcast.emit('user-disconnected', userId)
@@ -39,4 +39,4 @@ io.on('connection', socket => {
   })
 })
 
-server.listen(process.env.PORT||3030)
+server.listen(process.env.PORT || 3030)
