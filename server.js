@@ -16,10 +16,10 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.redirect(`/vc/${uuidV4()}`)
+  res.redirect(`/${uuidV4()}`)
 })
 
-app.get('/vc/:room', (req, res) => {
+app.get('/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
 
