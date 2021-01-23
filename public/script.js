@@ -101,6 +101,10 @@ const playStop = () => {
   }
 }
 
+var leaveMeeting = () => {
+  socket.emit('disconnect')
+}
+
 const setMuteButton = () => {
   const html = `
     <i class="fas fa-microphone"></i>

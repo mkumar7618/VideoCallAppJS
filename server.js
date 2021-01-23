@@ -15,6 +15,10 @@ app.use('/peerjs', peerServer);
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
+app.get('/home', (req, res) => {
+  res.send('You have Leaved meeeting and this is home page')
+})
+
 app.get('/', (req, res) => {
   res.redirect(`/${uuidV4()}`)
 })
