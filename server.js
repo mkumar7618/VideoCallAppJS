@@ -20,10 +20,10 @@ app.get('/home', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.redirect(`/${uuidV4()}`)
+  res.redirect(`/vc/${uuidV4()}`)
 })
 
-app.get('/:room', (req, res) => {
+app.get('/vc/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
 
