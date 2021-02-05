@@ -101,7 +101,7 @@ const playStop = () => {
   }
 }
 
-var leaveMeeting = () => {
+function leaveMeeting() {
   socket.emit('disconnect')
 }
 
