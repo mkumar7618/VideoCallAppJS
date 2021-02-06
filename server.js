@@ -8,7 +8,9 @@ const { ExpressPeerServer } = require('peer');
 const peerServer = ExpressPeerServer(server, {
   debug: true
 });
-const uuidV4 = require('uuidv4')
+
+const { uuid } = require('uuidv4');
+
 
 app.use('/peerjs', peerServer);
 
@@ -20,7 +22,7 @@ app.get('/home', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.redirect(`/vc/${uuidV4()}`)
+  res.redirect(`/vc/${uuid()}`)
 })
 
 app.get('/vc/:room', (req, res) => {
