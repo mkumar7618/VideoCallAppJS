@@ -8,7 +8,7 @@ const { ExpressPeerServer } = require('peer');
 const peerServer = ExpressPeerServer(server, {
   debug: true
 });
-const { v4: uuidV4 } = require('uuid')
+const uuidV4 = require('uuidv4')
 
 app.use('/peerjs', peerServer);
 
