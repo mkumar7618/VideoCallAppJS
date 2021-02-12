@@ -37,7 +37,7 @@ navigator.mediaDevices.getUserMedia({
   });
   socket.on("createMessage", message => {
     $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
-    scrollToBottom()
+    scrollToBottomChat()
   })
 })
 
@@ -68,12 +68,18 @@ function addVideoStream(video, stream) {
     video.play()
   })
   videoGrid.append(video)
+  scrollToBottomVideo()
 }
 
 
 
-const scrollToBottom = () => {
+const scrollToBottomChat = () => {
   var d = $('.main__chat_window');
+  d.scrollTop(d.prop("scrollHeight"));
+}
+
+const scrollToBottomVideo = () => {
+  var d = $('.main__videos');
   d.scrollTop(d.prop("scrollHeight"));
 }
 
@@ -90,7 +96,6 @@ const muteUnmute = () => {
 }
 
 const playStop = () => {
-  console.log('object')
   let enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
@@ -101,7 +106,22 @@ const playStop = () => {
   }
 }
 
-function leaveMeeting() {
+const chatSection = () => {
+  let mainLeft = document.getElementById('main__left');
+  let mainRight = document.getElementById('main__right');
+  if (mainRight.style.display === 'none') {
+    mainRight.style.display = 'flex';
+    mainRight.style.flex = 0.2;
+    mainLeft.style.flex = 0.8;
+  } else {
+    mainRight.style.display = 'none';
+    mainRight.style.flex = 0;
+    mainLeft.style.flex = 1;
+  }
+}
+
+
+const leaveMeeting = () => {
   socket.emit('disconnect')
 }
 
