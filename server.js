@@ -10,7 +10,7 @@ const peerServer = ExpressPeerServer(server, {
   debug: true
 });
 
-const { uuid } = require('uuidv4');
+const { v4: uuidV4 } = require('uuid')
 
 
 app.use('/peerjs', peerServer);
@@ -18,15 +18,23 @@ app.use('/peerjs', peerServer);
 app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get('/', (req, res) => {
+  res.render('index')
+})
+
 app.get('/home', (req, res) => {
+  res.render('index')
+})
+
+app.get('/vc_start', (req, res) => {
+  res.redirect(`/vc_start/${uuidV4()}`)
+})
+
+app.get('/leave', (req, res) => {
   res.send('You have Leaved meeeting and this is home page')
 })
 
-app.get('/', (req, res) => {
-  res.redirect(`/vc/${uuid()}`)
-})
-
-app.get('/vc/:room', (req, res) => {
+app.get('/vc_start/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
 

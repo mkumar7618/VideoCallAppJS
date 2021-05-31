@@ -36,7 +36,7 @@ navigator.mediaDevices.getUserMedia({
     }
   });
   socket.on("createMessage", message => {
-    $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
+    $("ul").append(`<li class="message"><b>User</b><br/>${message}</li>`);
     scrollToBottomChat()
   })
 })
